@@ -8,8 +8,6 @@ Coloque as fotos originais aqui, uma pasta por serviço (o nome da pasta é o sl
 - `desentupimento-de-ralo/`
 - `desentupimento-de-esgoto/`
 - `limpeza-de-caixa-de-gordura/`
-- `desentupimento-de-tanque/`
-- `desentupimento-de-coluna/`
 - `hidrojateamento/`
 
 No build, a primeira foto de cada pasta vira `src/assets/fotos/<slug>.jpg` (otimizada).

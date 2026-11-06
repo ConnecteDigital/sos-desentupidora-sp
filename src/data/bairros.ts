@@ -43,7 +43,7 @@ export const bairros: Bairro[] = [
     nome: 'Zona Sul de SP',
     zona: 'São Paulo (Capital)',
     sobre:
-      'Na Zona Sul atendemos de Moema, Vila Mariana e Saúde até Santo Amaro, Campo Limpo e Grajaú. Muitos prédios altos, onde o desentupimento de coluna de esgoto é um dos chamados mais frequentes.',
+      'Na Zona Sul atendemos de Moema, Vila Mariana e Saúde até Santo Amaro, Campo Limpo e Grajaú. Muitos prédios e restaurantes, onde o desentupimento de esgoto e a limpeza de caixa de gordura são chamados frequentes.',
     vizinhos: ['Moema', 'Vila Mariana', 'Santo Amaro', 'Jabaquara', 'Campo Limpo'],
   },
   {
@@ -92,7 +92,7 @@ export const bairros: Bairro[] = [
     nome: 'São Caetano do Sul',
     zona: 'Grande ABC',
     sobre:
-      'São Caetano do Sul é uma cidade compacta, com muitos prédios residenciais. O desentupimento de coluna de esgoto e de pia de cozinha está entre os chamados mais comuns.',
+      'São Caetano do Sul é uma cidade compacta, com muitos prédios residenciais. O desentupimento de pia de cozinha e de vaso sanitário está entre os chamados mais comuns.',
     vizinhos: ['Santo André', 'São Bernardo do Campo', 'Zona Sul de SP'],
   },
   {
@@ -117,7 +117,7 @@ export const bairros: Bairro[] = [
     nome: 'Osasco',
     zona: 'Região Oeste',
     sobre:
-      'Osasco é uma das maiores cidades da Grande SP, com muitos comércios e condomínios. Atendemos desentupimento de esgoto, coluna de prédio e caixa de gordura em toda a cidade.',
+      'Osasco é uma das maiores cidades da Grande SP, com muitos comércios e condomínios. Atendemos desentupimento de esgoto, limpeza de caixa de gordura e hidrojateamento em toda a cidade.',
     vizinhos: ['Barueri', 'Carapicuíba', 'Zona Oeste de SP'],
   },
   {
@@ -184,7 +184,7 @@ export const bairros: Bairro[] = [
     nome: 'Taboão da Serra',
     zona: 'Região Sudoeste',
     sobre:
-      'Em Taboão da Serra atendemos prédios, casas e comércios com desentupimento de coluna, pia, vaso sanitário e esgoto.',
+      'Em Taboão da Serra atendemos prédios, casas e comércios com desentupimento de pia, vaso sanitário, ralo e esgoto.',
     vizinhos: ['Embu das Artes', 'Zona Sul de SP', 'Cotia'],
   },
   {

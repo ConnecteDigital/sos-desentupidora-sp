@@ -10,8 +10,6 @@ const alts: Record<string, string> = {
   'desentupimento-de-ralo': 'Desentupimento de ralo feito pela SOS Desentupidora SP',
   'desentupimento-de-esgoto': 'Desentupimento de rede de esgoto com máquina',
   'limpeza-de-caixa-de-gordura': 'Limpeza de caixa de gordura feita pela SOS Desentupidora SP',
-  'desentupimento-de-tanque': 'Desentupimento de tanque de área de serviço',
-  'desentupimento-de-coluna': 'Desentupimento de coluna de esgoto de prédio',
   hidrojateamento: 'Hidrojateamento de tubulação com jato de alta pressão',
   fundo: 'Equipe da SOS Desentupidora SP em atendimento',
 };
