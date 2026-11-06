@@ -30,5 +30,5 @@ export function whatsappUrl(message: string = DEFAULT_WHATSAPP_MESSAGE) {
 // Tag do Google (gtag.js). Deixe vazio enquanto o cliente não mandar.
 export const googleTagId = '';
 
-// Contêiner do Google Tag Manager. Deixe vazio enquanto o cliente não mandar.
-export const gtmId = '';
+// Contêineres do Google Tag Manager (todos carregam em todas as páginas)
+export const gtmIds: string[] = ['GTM-WGQQKGRW', 'GTM-NLF9PL69'];
