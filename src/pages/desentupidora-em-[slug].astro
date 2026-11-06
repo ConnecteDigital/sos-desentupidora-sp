@@ -1,0 +1,116 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaButtons from '../components/CtaButtons.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { servicos } from '../data/servicos';
+import { bairros, bairroPath, type Bairro } from '../data/bairros';
+import { breadcrumbSchema, faqSchema } from '../data/schema';
+
+export function getStaticPaths() {
+  return bairros.map((bairro) => ({ params: { slug: bairro.slug }, props: { bairro } }));
+}
+
+interface Props {
+  bairro: Bairro;
+}
+
+const { bairro } = Astro.props;
+const path = bairroPath(bairro);
+const crumbs = [
+  { name: 'Início', path: '/' },
+  { name: 'Áreas atendidas', path: '/areas-atendidas/' },
+  { name: `Desentupidora em ${bairro.nome}`, path },
+];
+const regiao = bairro.zona === 'São Paulo (Capital)' ? 'capital paulista' : bairro.zona;
+const faq = [
+  {
+    q: `Vocês atendem em ${bairro.nome} 24 horas?`,
+    a: `Sim. Atendemos ${bairro.nome} 24 horas por dia, inclusive fins de semana e feriados.`,
+  },
+  {
+    q: `Quais serviços fazem em ${bairro.nome}?`,
+    a: `Desentupimento de pia, vaso sanitário, ralo, tanque, esgoto e coluna de prédio, limpeza de caixa de gordura e hidrojateamento.`,
+  },
+  {
+    q: `Atendem também ${bairro.vizinhos.slice(0, 2).join(' e ')}?`,
+    a: `Sim. Além de ${bairro.nome}, atendemos ${bairro.vizinhos.join(', ')} e toda a Grande São Paulo.`,
+  },
+  {
+    q: 'O serviço tem garantia?',
+    a: 'Sim. Todos os serviços da SOS Desentupidora SP têm garantia.',
+  },
+];
+const outrosBairros = bairros.filter((b) => b.slug !== bairro.slug);
+const msg = `Olá! Vim pelo site da SOS Desentupidora SP e preciso de um desentupimento em ${bairro.nome}.`;
+---
+
+<Base
+  title={`Desentupidora em ${bairro.nome} 24h | SOS Desentupidora SP`}
+  description={`Desentupidora em ${bairro.nome} 24 horas. Desentupimento de pia, vaso sanitário, ralo, esgoto e caixa de gordura. Atendimento rápido, com garantia.`}
+  schema={[faqSchema(faq), breadcrumbSchema(crumbs)]}
+>
+  <section class="hero page-hero">
+    <div class="container">
+      <Breadcrumbs items={crumbs} />
+      <span class="eyebrow">{bairro.zona} · Grande SP</span>
+      <h1>Desentupidora em {bairro.nome} 24 horas</h1>
+      <p class="hero-lead">
+        Pia, vaso, ralo ou esgoto entupido em {bairro.nome}? A SOS Desentupidora SP atende 24 horas,
+        sem quebra-quebra e com garantia.
+      </p>
+      <CtaButtons message={msg} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-grid">
+      <article class="prose">
+        <h2>Desentupidora 24h em {bairro.nome}</h2>
+        <p>{bairro.sobre}</p>
+        <p>
+          Nossa equipe atende a {regiao} e chega rápido em {bairro.nome} e arredores, como {bairro.vizinhos.join(', ')}.
+          Assim que você chama, a equipe sai para o endereço.
+        </p>
+
+        <h2>O que fazemos em {bairro.nome}</h2>
+        <ul>
+          {servicos.map((sv) => <li><a href={`/servicos/${sv.slug}/`}>{sv.nome}</a></li>)}
+        </ul>
+
+        <h2>Perguntas frequentes</h2>
+        <FaqList items={faq} />
+      </article>
+
+      <aside class="sidebar">
+        <div class="side-card">
+          <h2>Desentupidora em {bairro.nome} agora</h2>
+          <p>Fale com a gente pelo WhatsApp ou ligue. Atendimento 24 horas.</p>
+          <CtaButtons message={msg} size="md" />
+        </div>
+        <div class="side-list">
+          <h2>Outras cidades e regiões</h2>
+          <ul>
+            {outrosBairros.map((b) => <li><a href={bairroPath(b)}>Desentupidora em {b.nome}</a></li>)}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Serviços em {bairro.nome}</span>
+        <h2>Serviços de desentupimento em {bairro.nome}</h2>
+      </div>
+      <div class="services-grid">
+        {servicos.map((s) => <ServiceCard servico={s} />)}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title={`Desentupidora em ${bairro.nome} agora`} message={msg} />
+</Base>

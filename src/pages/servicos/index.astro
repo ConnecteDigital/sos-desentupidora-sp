@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaButtons from '../../components/CtaButtons.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { servicos } from '../../data/servicos';
+import { breadcrumbSchema } from '../../data/schema';
+
+const crumbs = [
+  { name: 'Início', path: '/' },
+  { name: 'Serviços', path: '/servicos/' },
+];
+---
+
+<Base
+  title="Serviços de Desentupimento 24h em São Paulo | SOS Desentupidora SP"
+  description="Todos os serviços da SOS Desentupidora SP: desentupimento de pia, vaso sanitário, ralo, tanque, esgoto e coluna, limpeza de caixa de gordura e hidrojateamento. 24h em SP e Grande SP."
+  schema={[breadcrumbSchema(crumbs)]}
+>
+  <section class="hero page-hero">
+    <div class="container">
+      <Breadcrumbs items={crumbs} />
+      <span class="eyebrow">Serviços</span>
+      <h1>Serviços de desentupimento em São Paulo</h1>
+      <p class="hero-lead">Desentupimento 24 horas em São Paulo e Grande SP, com equipamentos profissionais e garantia.</p>
+      <CtaButtons />
+    </div>
+  </section>
+  <section class="section section-soft">
+    <div class="container">
+      <div class="services-grid">
+        {servicos.map((s) => <ServiceCard servico={s} />)}
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

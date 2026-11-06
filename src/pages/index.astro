@@ -1,0 +1,240 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaButtons from '../components/CtaButtons.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import FaqList from '../components/FaqList.astro';
+import Icon from '../components/Icon.astro';
+import Gallery from '../components/Gallery.astro';
+import { Image } from 'astro:assets';
+import { fotoDoServico } from '../data/fotos';
+import { site } from '../data/site';
+import { servicos } from '../data/servicos';
+import { bairrosPorZona, bairroPath, zonasPrioritarias } from '../data/bairros';
+import { faqSchema } from '../data/schema';
+import { getCollection } from 'astro:content';
+
+const faq = [
+  {
+    q: 'O atendimento é 24 horas mesmo?',
+    a: 'Sim. Atendemos 24 horas por dia, 7 dias por semana, incluindo fins de semana e feriados, em São Paulo e na Grande SP.',
+  },
+  {
+    q: 'Quais cidades vocês atendem?',
+    a: 'Atendemos toda a cidade de São Paulo e a Grande SP: ABC, Osasco, Barueri, Guarulhos, Alto Tietê, Taboão da Serra, Embu das Artes, Cotia e região.',
+  },
+  {
+    q: 'Precisa quebrar piso ou parede para desentupir?',
+    a: 'Na grande maioria dos casos, não. Usamos máquinas que alcançam a obstrução por dentro da tubulação.',
+  },
+  {
+    q: 'Os serviços têm garantia?',
+    a: 'Sim. Todos os serviços da SOS Desentupidora SP têm garantia.',
+  },
+  {
+    q: 'Como chamo a desentupidora?',
+    a: 'É só chamar no WhatsApp ou ligar. Conte o que está acontecendo, de preferência com uma foto ou vídeo, e a equipe sai para o seu endereço.',
+  },
+];
+
+const fundo = fotoDoServico('fundo');
+const fotoEquipe = fundo ?? fotoDoServico('desentupimento-de-esgoto');
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.data.getTime() - a.data.data.getTime())
+  .slice(0, 3);
+---
+
+<Base
+  title="Desentupidora 24 Horas em São Paulo e Grande SP | SOS Desentupidora SP"
+  description={site.description}
+  schema={[faqSchema(faq)]}
+>
+  <section class="hero hero-home">
+    {
+      fundo && (
+        <Image
+          class="hero-bg"
+          src={fundo.src}
+          alt=""
+          widths={[480, 800, 1200, 1600]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      )
+    }
+    <div class="container hero-center">
+      <span class="eyebrow">Desentupidora em São Paulo · Plantão 24h</span>
+      <h1>Desentupidora 24 horas em São Paulo e <em>Grande SP</em></h1>
+      <p class="hero-lead">Pia, vaso, ralo ou esgoto entupido? Atendemos a qualquer hora, sem quebra-quebra e com garantia.</p>
+      <CtaButtons />
+      <ul class="hero-badges">
+        <li><Icon name="clock" size={22} /> <span>Atendimento 24h</span></li>
+        <li><Icon name="pin" size={22} /> <span>SP e Grande SP</span></li>
+        <li><Icon name="shield" size={22} /> <span>Serviço com garantia</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Diferenciais">
+    <div class="container trust-grid">
+      <div class="trust-item"><Icon name="clock" size={34} /><div><strong>24 horas</strong><span>Todos os dias, inclusive feriados</span></div></div>
+      <div class="trust-item"><Icon name="bolt" size={34} /><div><strong>Atendimento rápido</strong><span>Equipe sai na hora</span></div></div>
+      <div class="trust-item"><Icon name="shield" size={34} /><div><strong>Garantia</strong><span>Em todos os serviços</span></div></div>
+      <div class="trust-item"><Icon name="pin" size={34} /><div><strong>Grande SP</strong><span>Capital, ABC, Osasco, Guarulhos e mais</span></div></div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="servicos">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Nossos serviços</span>
+        <h2>Serviços de desentupimento</h2>
+        <p>Da pia da cozinha à rede de esgoto do condomínio, resolvemos qualquer entupimento em casas, apartamentos, comércios e empresas.</p>
+      </div>
+      <div class="services-grid">
+        {servicos.map((s) => <ServiceCard servico={s} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Como funciona</span>
+        <h2>Do chamado ao problema resolvido</h2>
+        <p>Sem enrolação: você chama, a gente vai e resolve.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card">
+          <h3>Chame no WhatsApp ou ligue</h3>
+          <p>Conte o que está acontecendo. Se puder, mande uma foto ou um vídeo do problema.</p>
+        </div>
+        <div class="step-card">
+          <h3>A equipe vai até você</h3>
+          <p>Atendemos 24 horas em São Paulo e na Grande SP, com equipamento completo para cada tipo de entupimento.</p>
+        </div>
+        <div class="step-card">
+          <h3>Serviço feito com garantia</h3>
+          <p>Desentupimos, testamos o escoamento na sua frente e deixamos o local limpo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-grid">
+      {
+        fotoEquipe && (
+          <div class="about-photo">
+            <Image src={fotoEquipe.src} alt={fotoEquipe.alt} widths={[400, 600, 800]} sizes="(max-width: 900px) 100vw, 460px" />
+          </div>
+        )
+      }
+      <div>
+      <div class="section-head">
+        <span class="eyebrow">Por que a SOS Desentupidora SP</span>
+        <h2>Desentupidora de confiança, a qualquer hora</h2>
+        <p>Equipe equipada para resolver desde uma pia entupida até a rede de esgoto de um prédio inteiro.</p>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <Icon name="clock" size={30} />
+          <div><h3>Plantão 24 horas</h3><p>Entupimento não espera horário comercial. Atendemos de madrugada, fins de semana e feriados.</p></div>
+        </div>
+        <div class="feature">
+          <Icon name="pump" size={30} />
+          <div><h3>Equipamentos profissionais</h3><p>Máquinas rotativas e hidrojateamento para desentupir sem quebrar piso nem parede sempre que possível.</p></div>
+        </div>
+        <div class="feature">
+          <Icon name="shield" size={30} />
+          <div><h3>Garantia no serviço</h3><p>Todo desentupimento sai com garantia. Se algo der errado, voltamos para resolver.</p></div>
+        </div>
+        <div class="feature">
+          <Icon name="pin" size={30} />
+          <div><h3>Toda a Grande SP</h3><p>Capital, ABC, Osasco, Barueri, Guarulhos, Alto Tietê e região sudoeste.</p></div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Trabalhos realizados</span>
+        <h2>Serviços que já fizemos</h2>
+        <p>Fotos reais de atendimentos da SOS Desentupidora SP.</p>
+      </div>
+      <Gallery limit={8} />
+    </div>
+  </section>
+
+  <section class="section section-soft" id="areas">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Áreas atendidas</span>
+        <h2>Desentupidora perto de você</h2>
+        <p>Atendemos toda a cidade de São Paulo e as cidades da Grande SP.</p>
+      </div>
+      <div class="zones">
+        {
+          bairrosPorZona().map((g) => (
+            <div class:list={['zone', { 'is-priority': zonasPrioritarias.includes(g.zona) }]}>
+              <h3>
+                {g.zona}
+                {zonasPrioritarias.includes(g.zona) && <span class="tag">Foco</span>}
+              </h3>
+              <ul>
+                {g.bairros.map((b) => (
+                  <li>
+                    <a href={bairroPath(b)}>
+                      <Icon name="pin" size={16} /> Desentupidora em {b.nome}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {
+    posts.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Blog</span>
+            <h2>Dicas contra entupimento</h2>
+          </div>
+          <div class="posts">
+            {posts.map((p) => (
+              <a class="post-card" href={`/blog/${p.id}/`}>
+                <time datetime={p.data.data.toISOString()}>{p.data.data.toLocaleDateString('pt-BR')}</time>
+                <h3>{p.data.titulo}</h3>
+                <p>{p.data.descricao}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section section-soft">
+    <div class="container" style="max-width: 860px">
+      <div class="section-head">
+        <span class="eyebrow">Dúvidas frequentes</span>
+        <h2>Perguntas frequentes</h2>
+      </div>
+      <FaqList items={faq} />
+    </div>
+  </section>
+
+  <CtaBand title="Precisa de uma desentupidora agora?" />
+</Base>

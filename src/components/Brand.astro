@@ -1,0 +1,24 @@
+---
+// Logo da empresa. Enquanto o arquivo src/assets/logo.png não existir, mostra o nome em texto.
+import { Image } from 'astro:assets';
+import { logo } from '../data/fotos';
+import { site } from '../data/site';
+
+interface Props {
+  width: number;
+  eager?: boolean;
+}
+
+const { width, eager = false } = Astro.props;
+---
+
+{
+  logo ? (
+    <Image src={logo} alt={site.name} width={width} loading={eager ? 'eager' : 'lazy'} />
+  ) : (
+    <span class="brand-text">
+      <span class="brand-sos">SOS</span>
+      <span class="brand-rest">Desentupidora <b>SP</b></span>
+    </span>
+  )
+}
