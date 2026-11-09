@@ -14,7 +14,7 @@ npm run build    # gera dist/
 
 | O quê | Arquivo |
 | --- | --- |
-| Nome, telefone, WhatsApp, IDs do Google (GTM/gtag) | `src/data/site.ts` |
+| Nome, telefone, WhatsApp, ID do Google Tag Manager | `src/data/site.ts` |
 | Serviços (textos, FAQ, SEO) | `src/data/servicos.ts` |
 | Cidades/regiões atendidas | `src/data/bairros.ts` |
 | Posts do blog | `src/content/blog/*.md` |

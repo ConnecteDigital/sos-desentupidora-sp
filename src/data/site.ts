@@ -27,8 +27,5 @@ export function whatsappUrl(message: string = DEFAULT_WHATSAPP_MESSAGE) {
   return `https://api.whatsapp.com/send?phone=${site.phoneDigits}&text=${encodeURIComponent(message)}`;
 }
 
-// Tag do Google (gtag.js). Deixe vazio enquanto o cliente não mandar.
-export const googleTagId = '';
-
-// Contêineres do Google Tag Manager (todos carregam em todas as páginas)
-export const gtmIds: string[] = ['GTM-WGQQKGRW', 'GTM-NLF9PL69'];
+// Contêiner do Google Tag Manager. Todo o rastreamento (Google Ads, conversões) fica dentro dele.
+export const gtmId = 'GTM-NLF9PL69';
